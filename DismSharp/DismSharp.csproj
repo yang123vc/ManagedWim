@@ -74,7 +74,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CustomProperty.cs" />
     <Compile Include="DismLogLevel.cs" />
     <Compile Include="DriverSignature.cs" />
     <Compile Include="FullyOfflineInstallable.cs" />
@@ -84,23 +83,30 @@
     <Compile Include="ImageMountOptions.cs" />
     <Compile Include="ImageMountStatus.cs" />
     <Compile Include="ImageType.cs" />
+    <Compile Include="Interop\DismCommitAndUnmountFlags.cs" />
+    <Compile Include="Interop\DismCustomProperty.cs" />
+    <Compile Include="Interop\DismDriver.cs" />
+    <Compile Include="Interop\DismDriverPackage.cs" />
+    <Compile Include="Interop\DismFeature.cs" />
+    <Compile Include="Interop\DismFeatureInfo.cs" />
+    <Compile Include="Interop\DismImageIdentifier.cs" />
+    <Compile Include="Interop\DismImageInfo.cs" />
+    <Compile Include="Interop\DismMountedImageInfo.cs" />
+    <Compile Include="Interop\DismMountMode.cs" />
+    <Compile Include="Interop\DismPackage.cs" />
+    <Compile Include="Interop\DismPackageInfo.cs" />
+    <Compile Include="Interop\DismProgressCallback.cs" />
+    <Compile Include="Interop\DismString.cs" />
+    <Compile Include="Interop\DismWimCustomizedInfo.cs" />
     <Compile Include="Interop\NativeMethods.cs" />
+    <Compile Include="Interop\SYSTEMTIME.cs" />
     <Compile Include="Interop\Utilites.cs" />
-    <Compile Include="MountedImageInfo.cs" />
-    <Compile Include="WimCustomizedInfo.cs" />
-    <Compile Include="WindowsDriver.cs" />
-    <Compile Include="WindowsDriverPackage.cs" />
     <Compile Include="WindowsImageArchitecture.cs" />
-    <Compile Include="WindowsImageInfo.cs" />
-    <Compile Include="WindowsPackage.cs" />
     <Compile Include="PackageFeatureState.cs" />
     <Compile Include="PackageIdentifier.cs" />
     <Compile Include="PackageReleaseType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RestartType.cs" />
-    <Compile Include="WindowsFeature.cs" />
-    <Compile Include="WindowsFeatureInfo.cs" />
-    <Compile Include="WindowsPackageInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="dismapi.h" />

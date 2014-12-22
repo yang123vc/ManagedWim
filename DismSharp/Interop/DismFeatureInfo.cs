@@ -4,12 +4,12 @@ using System.Runtime.InteropServices;
 namespace JCotton.DismSharp.Interop {
     [StructLayout(LayoutKind.Sequential, Pack = 1, CharSet = CharSet.Unicode)]
     public struct DismFeatureInfo {
-        string FeatureName;
-        PackageFeatureState FeatureState;
-        string DisplayName;
-        string Description;
-        RestartType RestartRequired;
-        IntPtr CustomProperty;
-        uint CustomPropertyCount;
+        public string FeatureName;
+        public PackageFeatureState FeatureState;
+        public string DisplayName;
+        public string Description;
+        public RestartType RestartRequired;
+        public IntPtr CustomProperty;
+        public uint CustomPropertyCount;
     }
 }

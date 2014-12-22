@@ -3,20 +3,20 @@
 namespace JCotton.DismSharp.Interop {
     [StructLayout(LayoutKind.Sequential, Pack = 1, CharSet = CharSet.Unicode)]
     public struct DismDriverPackage {
-        string PublishedName;
-        string OriginalFileName;
-        bool InBox;
-        string CatalogFile;
-        string ClassName;
-        string ClassGuid;
-        string ClassDescription;
-        bool BootCritical;
-        DriverSignature DriverSignature;
-        string ProviderName;
-        SYSTEMTIME Date;
-        uint MajorVersion;
-        uint MinorVersion;
-        uint Build;
-        uint Revision;
+        public string PublishedName;
+        public string OriginalFileName;
+        public bool InBox;
+        public string CatalogFile;
+        public string ClassName;
+        public string ClassGuid;
+        public string ClassDescription;
+        public bool BootCritical;
+        public DriverSignature DriverSignature;
+        public string ProviderName;
+        public SYSTEMTIME Date;
+        public uint MajorVersion;
+        public uint MinorVersion;
+        public uint Build;
+        public uint Revision;
     }
 }

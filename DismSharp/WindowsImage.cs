@@ -86,8 +86,8 @@ namespace JCotton.DismSharp {
                     info.Language,
                     info.LanguageCount
                     )
-                    .Select(l => l.Value)
-                    .ToList()
+                        .Select(l => l.Value)
+                        .ToList()
                 );
             this._defaultLanguageIndex = info.DefaultLanguageIndex;
             this._customizedInfo = info.CustomizedInfo == IntPtr.Zero
@@ -101,25 +101,31 @@ namespace JCotton.DismSharp {
             this.Dispose(false);
         }
 
-        public void Mount() {
-            Task t = new Task<Task>(this.MountAsync);
-            t.Start();
-            t.Wait();
-        }
+        public void Mount(
+            [NotNull] string path,
+            ImageMountOptions options
+            ) => this.Mount(path, options, null);
 
-        public async Task MountAsync(ImageMountOptions options) {
-            await this.MountAsync(
-                Path.Combine(Path.GetTempPath(), Path.GetRandomFileName()),
+        public void Mount(
+            [NotNull] string path,
+            ImageMountOptions options,
+            [CanBeNull] IProgress<DismEventArgs> progress
+            ) => Task.Run<Task>(async () => await this.MountAsync(path, options)).Wait();
+
+        public async Task MountAsync(
+            [NotNull] string path,
+            ImageMountOptions options
+            ) => await this.MountAsync(
+                path,
                 options,
                 CancellationToken.None,
                 null);
-        }
 
         public async Task MountAsync(
             [NotNull] string path,
             ImageMountOptions options,
             CancellationToken cancellationToken,
-            [CanBeNull] IProgress<DismEventArgs> progress 
+            [CanBeNull] IProgress<DismEventArgs> progress
             ) {
             if(path == null)
                 throw new ArgumentNullException("path");
@@ -129,7 +135,7 @@ namespace JCotton.DismSharp {
                 throw new ArgumentException("Path refers to a non-empty directory", "path");
             if(!Directory.Exists(path))
                 Directory.CreateDirectory(path);
-            await Task.Run( () =>
+            await Task.Run(() =>
                 NativeMethods.DismMountImage(
                     this._imagePath,
                     path,
@@ -141,6 +147,60 @@ namespace JCotton.DismSharp {
                     (current, total, userData) => progress?.Report(new DismEventArgs(current, total)),
                     IntPtr.Zero
                     ));
+        }
+
+        public void Unmount(
+            ImageCommitOptions options,
+            bool commit
+            ) => Task.Run<Task>(async () => await this.UnmountAsync(options, commit)).Wait();
+
+        public void Unmount(
+            ImageCommitOptions options,
+            bool commit,
+            [CanBeNull] IProgress<DismEventArgs> progress
+            ) => Task.Run<Task>(async () => await this.UnmountAsync(options, commit, progress)).Wait();
+
+        public async Task UnmountAsync(
+            ImageCommitOptions options,
+            bool commit
+            ) => await this.UnmountAsync(options, commit, CancellationToken.None, null);
+
+        public async Task UnmountAsync(
+            ImageCommitOptions options,
+            bool commit,
+            CancellationToken cancellationToken
+            ) => await this.UnmountAsync(options, commit, cancellationToken, null);
+
+        public async Task UnmountAsync(
+            ImageCommitOptions options,
+            bool commit,
+            [CanBeNull] IProgress<DismEventArgs> progress
+            ) => await this.UnmountAsync(options, commit, CancellationToken.None, progress);
+
+        public async Task UnmountAsync(
+            ImageCommitOptions options,
+            bool commit,
+            CancellationToken cancellationToken,
+            [CanBeNull] IProgress<DismEventArgs> progress
+            ) {
+            DismCommitAndUnmountFlags flags = 0;
+            if((options & ImageCommitOptions.Append) != 0)
+                flags |= DismCommitAndUnmountFlags.Append;
+            if((options & ImageCommitOptions.GenerateIntegrityData) != 0)
+                flags |= DismCommitAndUnmountFlags.GenerateIntegrity;
+            if(commit)
+                flags |= DismCommitAndUnmountFlags.Commit;
+            else
+                flags |= DismCommitAndUnmountFlags.Discard;
+            await Task.Run(() =>
+                NativeMethods.DismUnmountImage(
+                    this._mountPath,
+                    flags,
+                    cancellationToken.WaitHandle.SafeWaitHandle,
+                    (current, total, userData) => progress?.Report(new DismEventArgs(current, total)),
+                    IntPtr.Zero
+                    )
+                );
         }
 
         public void Dispose() {

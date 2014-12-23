@@ -36,18 +36,18 @@ namespace JCotton.DismSharp.Interop {
         #endregion Constants
 
         #region Methods
-        [DllImport("dismapi.dll", ExactSpelling = true, CharSet = CharSet.Unicode)]
-        public static extern int DismInitialize(
+        [DllImport("dismapi.dll", ExactSpelling = true, CharSet = CharSet.Unicode, PreserveSig = false)]
+        public static extern void DismInitialize(
             DismLogLevel logLevel,
             [CanBeNull] string logFilePath,
             [CanBeNull] string scratchDirectory
             );
 
-        [DllImport("dismapi.dll", ExactSpelling = true, CharSet = CharSet.Unicode)]
-        public static extern int DismShutdown();
+        [DllImport("dismapi.dll", ExactSpelling = true, CharSet = CharSet.Unicode, PreserveSig = false)]
+        public static extern void DismShutdown();
 
-        [DllImport("dismapi.dll", ExactSpelling = true, CharSet = CharSet.Unicode)]
-        public static extern int DismMountImage(
+        [DllImport("dismapi.dll", ExactSpelling = true, CharSet = CharSet.Unicode, PreserveSig = false)]
+        public static extern void DismMountImage(
             [NotNull] string imageFilePath,
             [NotNull] string mountPath,
             uint imageIndex,
@@ -59,8 +59,8 @@ namespace JCotton.DismSharp.Interop {
             IntPtr userData
             );
 
-        [DllImport("dismapi.dll", ExactSpelling = true, CharSet = CharSet.Unicode)]
-        public static extern int DismUnmountImage(
+        [DllImport("dismapi.dll", ExactSpelling = true, CharSet = CharSet.Unicode, PreserveSig = false)]
+        public static extern void DismUnmountImage(
             [NotNull] string mountPath,
             DismCommitAndUnmountFlags flags,
             [CanBeNull] SafeWaitHandle cancelEvent,
@@ -68,31 +68,31 @@ namespace JCotton.DismSharp.Interop {
             IntPtr userData
             );
 
-        [DllImport("dismapi.dll", ExactSpelling = true, CharSet = CharSet.Unicode)]
-        public static extern int DismOpenSession(
+        [DllImport("dismapi.dll", ExactSpelling = true, CharSet = CharSet.Unicode, PreserveSig = false)]
+        public static extern void DismOpenSession(
             [NotNull] string imagePath,
             [CanBeNull] string windowsDirectory,
             [CanBeNull] string systemDrive,
             out uint dismSession
             );
 
-        [DllImport("dismapi.dll", ExactSpelling = true, CharSet = CharSet.Unicode)]
-        public static extern int DismCloseSession(
+        [DllImport("dismapi.dll", ExactSpelling = true, CharSet = CharSet.Unicode, PreserveSig = false)]
+        public static extern void DismCloseSession(
             uint dismSession
             );
 
-        [DllImport("dismapi.dll", ExactSpelling = true, CharSet = CharSet.Unicode)]
-        public static extern int DismGetLastErrorMessage(
+        [DllImport("dismapi.dll", ExactSpelling = true, CharSet = CharSet.Unicode, PreserveSig = false)]
+        public static extern void DismGetLastErrorMessage(
             out IntPtr errorMessage
             );
 
-        [DllImport("dismapi.dll", ExactSpelling = true, CharSet = CharSet.Unicode)]
-        public static extern int DismRemountImage(
+        [DllImport("dismapi.dll", ExactSpelling = true, CharSet = CharSet.Unicode, PreserveSig = false)]
+        public static extern void DismRemountImage(
             [NotNull] string mountPath
             );
 
-        [DllImport("dismapi.dll", ExactSpelling = true, CharSet = CharSet.Unicode)]
-        public static extern int DismCommitImage(
+        [DllImport("dismapi.dll", ExactSpelling = true, CharSet = CharSet.Unicode, PreserveSig = false)]
+        public static extern void DismCommitImage(
             uint session,
             DismCommitAndUnmountFlags flags,
             [CanBeNull] SafeWaitHandle cancelEvent,
@@ -100,24 +100,24 @@ namespace JCotton.DismSharp.Interop {
             IntPtr userData
             );
 
-        [DllImport("dismapi.dll", ExactSpelling = true, CharSet = CharSet.Unicode)]
-        public static extern int DismGetImageInfo(
+        [DllImport("dismapi.dll", ExactSpelling = true, CharSet = CharSet.Unicode, PreserveSig = false)]
+        public static extern void DismGetImageInfo(
             [NotNull] string imageFilePath,
             out IntPtr imageInfo,
             out uint count
             );
 
-        [DllImport("dismapi.dll", ExactSpelling = true, CharSet = CharSet.Unicode)]
-        public static extern int DismGetMountedImageInfo(
+        [DllImport("dismapi.dll", ExactSpelling = true, CharSet = CharSet.Unicode, PreserveSig = false)]
+        public static extern void DismGetMountedImageInfo(
             out IntPtr imageInfo,
             out uint count
             );
 
-        [DllImport("dismapi.dll", ExactSpelling = true, CharSet = CharSet.Unicode)]
-        public static extern int DismCleanupMountpoints();
+        [DllImport("dismapi.dll", ExactSpelling = true, CharSet = CharSet.Unicode, PreserveSig = false)]
+        public static extern void DismCleanupMountpoints();
 
-        [DllImport("dismapi.dll", ExactSpelling = true, CharSet = CharSet.Unicode)]
-        public static extern int DismCheckImageHealth(
+        [DllImport("dismapi.dll", ExactSpelling = true, CharSet = CharSet.Unicode, PreserveSig = false)]
+        public static extern void DismCheckImageHealth(
             uint session,
             bool scanImage,
             [CanBeNull] SafeWaitHandle cancelEvent,
@@ -126,8 +126,8 @@ namespace JCotton.DismSharp.Interop {
             out ImageHealthState imageHealth
             );
 
-        [DllImport("dismapi.dll", ExactSpelling = true, CharSet = CharSet.Unicode)]
-        public static extern int DismRestoreImageHealth(
+        [DllImport("dismapi.dll", ExactSpelling = true, CharSet = CharSet.Unicode, PreserveSig = false)]
+        public static extern void DismRestoreImageHealth(
             uint session,
             [CanBeNull, MarshalAs(UnmanagedType.LPArray)] string[] sourcePaths,
             uint sourcePathCount,
@@ -137,13 +137,13 @@ namespace JCotton.DismSharp.Interop {
             IntPtr userData
             );
 
-        [DllImport("dismapi.dll", ExactSpelling = true, CharSet = CharSet.Unicode)]
-        public static extern int DismDelete(
+        [DllImport("dismapi.dll", ExactSpelling = true, CharSet = CharSet.Unicode, PreserveSig = false)]
+        public static extern void DismDelete(
             IntPtr dismStructure
             );
 
-        [DllImport("dismapi.dll", ExactSpelling = true, CharSet = CharSet.Unicode)]
-        public static extern int DismAddPackage(
+        [DllImport("dismapi.dll", ExactSpelling = true, CharSet = CharSet.Unicode, PreserveSig = false)]
+        public static extern void DismAddPackage(
             uint session,
             [NotNull] string packagePath,
             bool ignoreCheck,
@@ -153,8 +153,8 @@ namespace JCotton.DismSharp.Interop {
             IntPtr userData
             );
 
-        [DllImport("dismapi.dll", ExactSpelling = true, CharSet = CharSet.Unicode)]
-        public static extern int DismRemovePackage(
+        [DllImport("dismapi.dll", ExactSpelling = true, CharSet = CharSet.Unicode, PreserveSig = false)]
+        public static extern void DismRemovePackage(
             uint session,
             [NotNull] string identifier,
             PackageIdentifier packageIdentifier,
@@ -163,8 +163,8 @@ namespace JCotton.DismSharp.Interop {
             IntPtr userData
             );
 
-        [DllImport("dismapi.dll", ExactSpelling = true, CharSet = CharSet.Unicode)]
-        public static extern int DismEnableFeature(
+        [DllImport("dismapi.dll", ExactSpelling = true, CharSet = CharSet.Unicode, PreserveSig = false)]
+        public static extern void DismEnableFeature(
             uint session,
             [NotNull] string featureName,
             [CanBeNull] string identifier,
@@ -178,8 +178,8 @@ namespace JCotton.DismSharp.Interop {
             IntPtr userData
             );
 
-        [DllImport("dismapi.dll", ExactSpelling = true, CharSet = CharSet.Unicode)]
-        public static extern int DismDisableFeature(
+        [DllImport("dismapi.dll", ExactSpelling = true, CharSet = CharSet.Unicode, PreserveSig = false)]
+        public static extern void DismDisableFeature(
             uint session,
             [NotNull] string featureName,
             [CanBeNull] string packageName,
@@ -189,23 +189,23 @@ namespace JCotton.DismSharp.Interop {
             IntPtr userData
             );
 
-        [DllImport("dismapi.dll", ExactSpelling = true, CharSet = CharSet.Unicode)]
-        public static extern int DismGetPackages(
+        [DllImport("dismapi.dll", ExactSpelling = true, CharSet = CharSet.Unicode, PreserveSig = false)]
+        public static extern void DismGetPackages(
             uint session,
             out IntPtr package,
             out uint count
             );
 
-        [DllImport("dismapi.dll", ExactSpelling = true, CharSet = CharSet.Unicode)]
-        public static extern int DismGetPackageInfo(
+        [DllImport("dismapi.dll", ExactSpelling = true, CharSet = CharSet.Unicode, PreserveSig = false)]
+        public static extern void DismGetPackageInfo(
             uint session,
             [NotNull] string identifier,
             PackageIdentifier packageIdentifier,
             out IntPtr packageInfo
             );
 
-        [DllImport("dismapi.dll", ExactSpelling = true, CharSet = CharSet.Unicode)]
-        public static extern int DismGetFeatures(
+        [DllImport("dismapi.dll", ExactSpelling = true, CharSet = CharSet.Unicode, PreserveSig = false)]
+        public static extern void DismGetFeatures(
             uint session,
             [CanBeNull] string identifier,
             PackageIdentifier packageIdentifier,
@@ -213,8 +213,8 @@ namespace JCotton.DismSharp.Interop {
             out uint featureCount
             );
 
-        [DllImport("dismapi.dll", ExactSpelling = true, CharSet = CharSet.Unicode)]
-        public static extern int DismGetFeatureInfo(
+        [DllImport("dismapi.dll", ExactSpelling = true, CharSet = CharSet.Unicode, PreserveSig = false)]
+        public static extern void DismGetFeatureInfo(
             uint session,
             [NotNull] string featureName,
             [CanBeNull] string identifier,
@@ -222,8 +222,8 @@ namespace JCotton.DismSharp.Interop {
             out IntPtr featureInfo
             );
 
-        [DllImport("dismapi.dll", ExactSpelling = true, CharSet = CharSet.Unicode)]
-        public static extern int DismGetFeatureParent(
+        [DllImport("dismapi.dll", ExactSpelling = true, CharSet = CharSet.Unicode, PreserveSig = false)]
+        public static extern void DismGetFeatureParent(
             uint session,
             [NotNull] string featureName,
             [CanBeNull] string identifier,
@@ -232,36 +232,36 @@ namespace JCotton.DismSharp.Interop {
             out uint count
             );
 
-        [DllImport("dismapi.dll", ExactSpelling = true, CharSet = CharSet.Unicode)]
-        public static extern int DismApplyUnattend(
+        [DllImport("dismapi.dll", ExactSpelling = true, CharSet = CharSet.Unicode, PreserveSig = false)]
+        public static extern void DismApplyUnattend(
             uint session,
             [NotNull] string unattendFile,
             bool singleSession
             );
 
-        [DllImport("dismapi.dll", ExactSpelling = true, CharSet = CharSet.Unicode)]
-        public static extern int DismAddDriver(
+        [DllImport("dismapi.dll", ExactSpelling = true, CharSet = CharSet.Unicode, PreserveSig = false)]
+        public static extern void DismAddDriver(
             uint session,
             [NotNull] string driverPath,
             bool forceUnsigned
             );
 
-        [DllImport("dismapi.dll", ExactSpelling = true, CharSet = CharSet.Unicode)]
-        public static extern int DismRemoveDriver(
+        [DllImport("dismapi.dll", ExactSpelling = true, CharSet = CharSet.Unicode, PreserveSig = false)]
+        public static extern void DismRemoveDriver(
             uint session,
             [NotNull] string driverPath
             );
 
-        [DllImport("dismapi.dll", ExactSpelling = true, CharSet = CharSet.Unicode)]
-        public static extern int DismGetDrivers(
+        [DllImport("dismapi.dll", ExactSpelling = true, CharSet = CharSet.Unicode, PreserveSig = false)]
+        public static extern void DismGetDrivers(
             uint session,
             bool allDrivers,
             out IntPtr driverPackage,
             out uint count
             );
 
-        [DllImport("dismapi.dll", ExactSpelling = true, CharSet = CharSet.Unicode)]
-        public static extern int DismGetDriverInfo(
+        [DllImport("dismapi.dll", ExactSpelling = true, CharSet = CharSet.Unicode, PreserveSig = false)]
+        public static extern void DismGetDriverInfo(
             uint session,
             [NotNull] string driverPath,
             out IntPtr driver,

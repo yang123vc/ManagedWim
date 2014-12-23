@@ -1,4 +1,7 @@
-﻿namespace JCotton.DismSharp.Interop {
+﻿using System;
+
+namespace JCotton.DismSharp.Interop {
+    [Flags]
     public enum DismCommitAndUnmountFlags : uint {
         Commit = 0x00000000,
         Discard = 0x00000001,

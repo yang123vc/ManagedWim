@@ -75,6 +75,7 @@
   <ItemGroup>
     <Compile Include="DismEventArgs.cs" />
     <Compile Include="DismLogLevel.cs" />
+    <Compile Include="DismSession.cs" />
     <Compile Include="DriverSignature.cs" />
     <Compile Include="FullyOfflineInstallable.cs" />
     <Compile Include="ImageBootable.cs" />

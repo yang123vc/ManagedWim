@@ -101,6 +101,17 @@ namespace JCotton.DismSharp {
             this.Dispose(false);
         }
 
+        public DismSession OpenSession() {
+            uint session;
+            NativeMethods.DismOpenSession(
+                this._mountPath,
+                null,
+                null,
+                out session
+                );
+            return new DismSession(session, "Windows", "");
+        }
+
         public void Mount(
             [NotNull] string path,
             ImageMountOptions options
